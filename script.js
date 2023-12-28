@@ -39,4 +39,33 @@ Array.from(buttons).forEach((btn) => {
       }
     }
   });
+
+  btn.addEventListener("keypress", (e) => {
+    let buttonText = e.key;
+
+    if (buttonText === "=") {
+      string = evaluateExpression(string);
+      inputField.value = string;
+    } else if (buttonText === "Ac") {
+      string = "";
+      inputField.value = string;
+    } else if (buttonText === "C") {
+      string = string.slice(0, -1);
+      inputField.value = string;
+    } else {
+      if (buttonText === "X") {
+        buttonText = "*";
+        string = string + buttonText;
+        inputField.value = string;
+      } else if (
+        (buttonText == "00" && string == "") ||
+        (buttonText == "0" && string == "")
+      ) {
+        string = "";
+      } else {
+        string = string + buttonText;
+        inputField.value = string;
+      }
+    }
+  });
 });
